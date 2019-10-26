@@ -221,3 +221,22 @@ TEST FILE COMPARISON
 
 file1 -nt file2		checks if file1 is newer than file2
 file1 -ot file2		checks if file1 is alder than file2
+
+#FILE PERMISSION CODE
+
+PERMISSION		BINARY		OCTAL		DESCRIPTION
+---			000		0		no permission
+--x			001		1		only execute permission
+-w-			010		2		only write permission
+-wx			011		3		write and execute permission
+r--			100		4		only read permission
+r-x			101		5		read and execute permission
+rw-			110		6		read and write permission
+rwx			111		7		all permissions: read write and execute
+
+
+#CHMOD COMMAND
+
+chmod "option mode" file
+
+option mode written in octal code
