@@ -1,0 +1,223 @@
+BASIC COMMANDS SH 
+
+break		it allow you to exit from a loop (for, while, select)
+cd		    change the directory. You can manage the directory like that:
+	cd ~/folder1/subforder1
+cd ..		just to go back to one level
+cd ../..	go back to 2 levels
+cd ~ 		go back to the home directory
+history		dispay the command history. by default you have 1000 lines in memory
+
+
+cntr + z	stop a running process on the shell
+
+###############################################################################################
+
+cat .bash_history
+prints the hidden .bash_history file which is located in hte user's home directory
+
+TIP -- To resume a command previously used 
+->> ![number_of_the_command_diplayed_in_the_history_file]
+
+###############################################################################################
+
+chmod 		change the permission for a file or a directory. Read "stuffs_about_permission"
+man		    show the manual for a command 
+mkdir		create a directory into the work directory you are 
+more		display a text on the terminal skipping with the percentages 
+mv          use to move files to another folder or directory
+pwd		    it shows the current working directory
+sleep		the command will stop for the time you want.
+sudo		used for running a command as a root. You will use your password
+tail		it shows the final part of a text on the terminal
+tail -n 2	show the last two lines on the terminal	
+head		displays the first gruops of lines 
+head -5		displays the first 5 lines
+top		    it shows the beginning part of a text on the terminal
+touch		create a new file on the current directory
+vim		    open vi improved (used to write scripts) 
+who		    it shows the owner
+htop		information about operation system CPU, RAM ...
+
+bash		create a a new shell program called child shell
+		    or in alternative /bin/bash/
+
+sleep		example sleep 100
+		    accepts as parameter the number of seconds you want the process to wait
+sleep []&	puts a command into baskground mode
+
+#################################################################################################################
+
+mount		dislays a list of media devices currently mounted on the system
+umount		removes (unmount) a media device
+		
+		use: umount [directoy | device]
+
+#################################################################################################################
+
+LISTING FILES AND DIRECTORIES
+ls		    list files into the current directory in alphabetical order
+ls -F		list in a way to distinguish files from directories 
+		/   in the end, it is a directory
+		*   in the end, it is an executable file (a script)
+ls -l 		list the file or directories with their permission
+ls -a		list hidden files along with normal files
+		->> hidden files start with .
+
+ls -F -R or
+ls -FR		it is called recursive option, it shows files that are contained within subdirectories
+ls -i		to view a file or directory's inode number
+ls -li		useful combine both
+
+#COPYING COMMAND
+cp		copying files and directories from one location to onother
+cp -R		copying an entire folder content to another folder (we use the recursive command)
+cp -i		copying a file overwriting an existing file, asking you want to 
+
+#LINKING FILES
+used to have different copies of the same file on the system. We have:
+
+ln -s		symbolic link. Original file must exist, symbolically linked files do not share the same content
+		
+		Use: ln -s [original file] [linked file] 
+		
+		with ls -l you can see the links between the files 
+		for example: linked file -> original file
+ln		hard link Original file must exist.
+
+		Use: ln -s [original file] [linked file]
+
+		Files have same PID and same size (take a look with ls -li) 
+
+#REMOVING FILES AND DIRECTORIES
+rm		deletes a file
+rm -i 		deletes a file but before asks you if you are sure to delete it
+rmdir		deletes a directory. It MUST be empty: before you must delete all the files into the directory
+rmdir -i 	it is not exist. YOU CAN ONLY DELETE EMPY DIRECTORIES
+			so we can use..
+rm -r		allows the command to descend into the directory first remove the file inside and then the directory itself
+rm -ri		the same of before but asking if you want to delete the file
+rm -rf		allows to delete directories and files inside without warmings. to be used sparingly
+
+#CAT COMMAND
+
+cat		displays all the data inside a text file
+cat -n		displays the lines for you
+cat -b		only numbers the lines that have a text
+cat -T		does not show tab characters
+
+#PS COMMAND LINUX BIBBLE
+
+ps		alone it show the information about the process runnin on the current terminal 
+
+		PID TTY          TIME CMD
+ 		8300 pts/7    00:00:00 ps
+		PID	process ID
+		TTY	the terminal whome they are running
+		TIME	CPU time the process has used
+
+ps -ef		this combination allow to show all the processes and programm running into the system
+		    
+ps -f		shows child shell processes with PID and PPID
+ps --forest	shows the nesting of the subshells (useful if you have many)
+
+#SORTING DATA
+
+sort		it just sortes a list
+sort -n		recognises numbers as number instead of characters (this is the default option on bash)
+
+
+#DF COMMAND
+
+df		    shows each mounted filesystem that contains data
+df -h		shows the dish space in M or in G
+-h	 	    it means human readable
+
+#DU COMMAND
+du		    displays all the file directories and sub-directories under the current directory and shows how many space they take
+du -c		produces a grand total of all files listed
+du -h		prints size in a human readable form (Kb, Mb, Gb)
+du -s		summarizes each argument
+du -hs		shows the folder size 
+
+
+
+#SEARCHING FOR DATA
+grep 		searches for a data in a file
+ 
+		use: grep [options] pattern [file]
+
+grep -v		reverce the search 
+grep -n		finds the line number where the matching patterns are found
+grep -c		counts the parameters matched
+grep -e		to specify more than one matching pattern
+
+		use: grep -e [option] -e [option] pattern [file]
+
+##############################################################################################################
+
+kill		kill a command. It works only using the process PID
+
+		USE: sudo kill PID
+
+killall		kill commands without a PID
+
+		Use: killall http* 
+		it kills all the process starting with http
+
+##############################################################################################################
+
+INSTALLING SOFTWARE
+
+dpkg --list		lists installed packages
+dpkg -L			lists all the files associated with a particular software package
+			usage: dpkl -L package_name
+
+aptitude search 	searchs for a package
+			usage: aptitude search package_name
+
+aptitude install	installs a software from a repository
+			usage: sudo aptitude install package_name
+
+aptitude safe-upgrade	update all the installed packeges to the most recent version
+			            it does not take a software package name as argument
+			      usage: sudo aptitude safe-upgrade
+
+apt-get	install		install a packege
+			usage: sudo apt-get install package_name
+NOTE
+all the repositories are stored in the file /etc/apt/sources.list 
+
+###############################################################################################################
+
+OUTPUT REDIRECTION 
+
+command > outputfile	writes the output on a file
+command >> outputfile	overwrites the output on a file
+	
+INPUT REDIRECTION
+command < inputfile	takes the contents of a file and redirects it to a command
+
+##############################################################################################################
+
+USING TEMPORARY FILES
+
+mktemp			creates a file in the local directory
+			    template any_file_name.XXXXXX plus six X's appended to the end of the filename
+mktemp -t		creates the file in the temporary directory of the sistem /tmp
+
+TEST FILE COMPARISON
+
+-d		it exists and it is a directory
+-e		checks if the file exists
+-f		it exists and it is a file
+-r		checks if file exists and is readable
+-s		checks if file exists and is not empty
+-w		checks if file exists and is writable
+-x		checks if file exists and is executable
+-O		checks if file exists and is owner by the current user
+-G		checks if file exists and the default group is the same as the current user
+
+
+file1 -nt file2		checks if file1 is newer than file2
+file1 -ot file2		checks if file1 is alder than file2
